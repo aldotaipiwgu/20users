@@ -1,30 +1,18 @@
-# Set the number of user accounts to create
-$numberOfUsers = 20
+# Set the number of computer accounts to create
+$numberOfComputers = 10
 
-# Set the default password for the new user accounts
-$password = "P@ssw0rd"
+# Set the OU where the computer accounts will be created
+$ouPath = "OU=Computers,DC=example,DC=com"
 
-# Set the OU where the user accounts will be created
-$ouPath = "OU=Users,DC=example,DC=com"
-
-# Loop through and create the user accounts
-for ($i = 1; $i -le $numberOfUsers; $i++) {
-    $firstName = "User$i"
-    $lastName = "Last$i"
-    $samAccountName = "user$i"
-    $displayName = "$firstName $lastName"
-    $userPrincipalName = "$samAccountName@example.com"
-    $emailAddress = "$samAccountName@example.com"
+# Loop through and create the computer accounts
+for ($i = 1; $i -le $numberOfComputers; $i++) {
+    $computerName = "COMPUTER$i"
+    $description = "Test computer $i"
     
-    # Create the new user account
-    New-ADUser `
-        -SamAccountName $samAccountName `
-        -UserPrincipalName $userPrincipalName `
-        -Name $displayName `
-        -GivenName $firstName `
-        -Surname $lastName `
-        -EmailAddress $emailAddress `
-        -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) `
+    # Create the new computer account
+    New-ADComputer `
+        -Name $computerName `
+        -Description $description `
         -Enabled $true `
         -Path $ouPath
 }
