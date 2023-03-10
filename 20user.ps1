@@ -2,7 +2,7 @@
 $numberOfComputers = 10
 
 # Set the OU where the computer accounts will be created
-$ouPath = "OU=Computers,DC=home.lab,DC=com"
+$ouPath = "OU=Computers,DC=home,DC=lab,DC=com"
 
 # Loop through and create the computer accounts
 for ($i = 1; $i -le $numberOfComputers; $i++) {
@@ -14,5 +14,6 @@ for ($i = 1; $i -le $numberOfComputers; $i++) {
         -Name $computerName `
         -Description $description `
         -Enabled $true `
-        -Path $ouPath
+        -Path $ouPath `
+        -Server home.lab.com
 }
