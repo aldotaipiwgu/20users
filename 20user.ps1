@@ -2,7 +2,7 @@
 $numberOfComputers = 10
 
 # Set the OU where the computer accounts will be created
-$ouPath = "OU=Computers,DC=home,DC=lab,DC=com"
+$ouPath = "OU=Computers1,DC=home,DC=lab,DC=com"
 
 # Loop through and create the computer accounts
 for ($i = 1; $i -le $numberOfComputers; $i++) {
